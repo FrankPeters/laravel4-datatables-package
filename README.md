@@ -1,5 +1,22 @@
 ## Datatables Bundle for Laravel 4
 
+**About this fork**
+
+This fork is made because we wanted to use it in a legacy project that has a stripped version of Laravel running. 
+
+However we didn't want to sideload several dependencies of Datatables. Dependencies stripped in this fork:
+
+In ```composer.json```:
+
+- illuminate/view
+
+In the ```Datatables.php``` file:
+ 
+- Input
+- Response
+- Language/Translator
+- Migrations
+
 **About**
 
 This bundle is created to handle the server-side processing of the DataTables Jquery Plugin (http://datatables.net) by using Eloquent ORM or Fluent Query Builder.
