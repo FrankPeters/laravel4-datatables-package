@@ -12,12 +12,9 @@
  */
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Filesystem\Filesystem;
 
 class Datatables
@@ -546,7 +543,7 @@ class Datatables
      */
     protected function blader($str, $data = array())
     {
-        $empty_filesystem_instance = new Filesystem;
+/*        $empty_filesystem_instance = new Filesystem;
         $blade = new BladeCompiler($empty_filesystem_instance, 'datatables');
         $parsed_string = $blade->compileString($str);
 
@@ -561,7 +558,7 @@ class Datatables
         }
 
         $str = ob_get_contents();
-        ob_end_clean();
+        ob_end_clean();*/
 
         return $str;
     }
@@ -1044,7 +1041,7 @@ class Datatables
         if ($raw) {
             return $output;
         } else {
-            return Response::json($output);
+            return json_encode($output);
         }
     }
 
