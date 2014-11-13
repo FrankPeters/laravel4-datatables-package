@@ -61,7 +61,7 @@ class Datatables
     public function __construct()
     {
 
-        $this->setData($this->processData(Input::get()));
+        $this->setData($this->processData($_REQUEST));
 
         return $this;
     }
@@ -543,22 +543,22 @@ class Datatables
      */
     protected function blader($str, $data = array())
     {
-/*        $empty_filesystem_instance = new Filesystem;
-        $blade = new BladeCompiler($empty_filesystem_instance, 'datatables');
-        $parsed_string = $blade->compileString($str);
+        /*        $empty_filesystem_instance = new Filesystem;
+                $blade = new BladeCompiler($empty_filesystem_instance, 'datatables');
+                $parsed_string = $blade->compileString($str);
 
-        ob_start() and extract($data, EXTR_SKIP);
+                ob_start() and extract($data, EXTR_SKIP);
 
-        try {
-            eval('?>' . $parsed_string);
-        }
-        catch (\Exception $e) {
-            ob_end_clean();
-            throw $e;
-        }
+                try {
+                    eval('?>' . $parsed_string);
+                }
+                catch (\Exception $e) {
+                    ob_end_clean();
+                    throw $e;
+                }
 
-        $str = ob_get_contents();
-        ob_end_clean();*/
+                $str = ob_get_contents();
+                ob_end_clean();*/
 
         return $str;
     }
@@ -905,7 +905,8 @@ class Datatables
         foreach ($joins as $join) {
             $table = preg_split("/ as /i", $join->table);
             $names[] = $table[0];
-            if (isset($table[1]) && !empty($this->databasePrefix()) && strpos($table[1], $this->databasePrefix()) == 0) {
+            $databasePrefix = $this->databasePrefix();
+            if (isset($table[1]) && !empty($databasePrefix) && strpos($table[1], $this->databasePrefix()) == 0) {
                 $names[] = preg_replace('/^'.$this->databasePrefix().'/', '', $table[1]);
             }
         }
