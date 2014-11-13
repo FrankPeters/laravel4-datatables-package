@@ -1046,6 +1046,7 @@ class Datatables
         if ($raw) {
             return $output;
         } else {
+            header("Content-type: application/json");
             return json_encode($output);
         }
     }
